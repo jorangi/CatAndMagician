@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f85d27df6458684ab5201570b2a0e3b, type: 3}
+  m_Name: ProtectBall
+  m_EditorClassIdentifier: 
+  id: ProtectBall
+  icon: {fileID: 21300000, guid: 30c3df8230afbd542aa37fc8594cc596, type: 3}
+  title_ko: "\uD504\uB85C\uD14D\uD2B8 \uBCFC"
+  title_en: Protect Ball
+  val:
+  - 60
+  - 55
+  - 50
+  - 35
+  - 20
+  itemUp_ko:
+  - "60\uCD08\uB9C8\uB2E4 \uC801\uC758 \uACF5\uACA9\uC744 \uBC29\uC5B4\uD558\uB294
+    \uBCF4\uD638\uB9C9\uC744 \uC0DD\uC131\uD569\uB2C8\uB2E4"
+  - "\uBCF4\uD638\uB9C9\uC758 \uCFE8\uD0C0\uC784\uC774 55\uCD08\uAC00 \uB429\uB2C8\uB2E4"
+  - "\uBCF4\uD638\uB9C9\uC758 \uCFE8\uD0C0\uC784\uC774 50\uCD08\uAC00 \uB429\uB2C8\uB2E4"
+  - "\uBCF4\uD638\uB9C9\uC758 \uCFE8\uD0C0\uC784\uC774 35\uCD08\uAC00 \uB429\uB2C8\uB2E4"
+  - "\uBCF4\uD638\uB9C9\uC758 \uCFE8\uD0C0\uC784\uC774 20\uCD08\uAC00 \uB429\uB2C8\uB2E4"
+  itemUp_en:
+  - Creates a shield that blocks enemy attacks every 60 seconds
+  - The cooldown of the shield is 55 seconds.
+  - The cooldown of the shield is 50 seconds.
+  - The cooldown of the shield is 35 seconds.
+  - The cooldown of the shield is 20 seconds.
+  Upgraded_ko: 

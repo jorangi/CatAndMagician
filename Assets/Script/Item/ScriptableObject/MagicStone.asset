@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f85d27df6458684ab5201570b2a0e3b, type: 3}
+  m_Name: MagicStone
+  m_EditorClassIdentifier: 
+  id: MagicStone
+  icon: {fileID: 21300000, guid: 7c98dbb1a27ec144a99abd371ede96c9, type: 3}
+  title_ko: "\uB9C8\uBC95\uC11D"
+  title_en: Magic Stone
+  val:
+  - 1.15
+  - 1.15
+  - 1.15
+  - 1.2
+  - 1.2
+  itemUp_ko:
+  - "\uD22C\uC0AC\uCCB4\uC758 \uACF5\uACA9\uC18D\uB3C4\uAC00 15%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  - "\uD22C\uC0AC\uCCB4\uC758 \uACF5\uACA9\uC18D\uB3C4\uAC00 15%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  - "\uD22C\uC0AC\uCCB4\uC758 \uACF5\uACA9\uC18D\uB3C4\uAC00 15%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  - "\uD22C\uC0AC\uCCB4\uC758 \uACF5\uACA9\uC18D\uB3C4\uAC00 20%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  - "\uD22C\uC0AC\uCCB4\uC758 \uACF5\uACA9\uC18D\uB3C4\uAC00 20%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  itemUp_en:
+  - Projectile attack speed is increased by 15%
+  - Projectile attack speed is increased by 15%
+  - Projectile attack speed is increased by 15%
+  - Projectile attack speed is increased by 20%
+  - Projectile attack speed is increased by 20%
+  Upgraded_ko: 

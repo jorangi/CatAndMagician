@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f85d27df6458684ab5201570b2a0e3b, type: 3}
+  m_Name: SpikyBall
+  m_EditorClassIdentifier: 
+  id: SpikyBall
+  icon: {fileID: 21300000, guid: 5f8fa2749d704a146b95255b8a0071db, type: 3}
+  title_ko: "\uBC24\uC1A1\uC774"
+  title_en: Spiky Ball
+  val:
+  - 10
+  - 1.5
+  - 1.5
+  - 1.8
+  - 1.5
+  itemUp_ko:
+  - "\uD53C\uACA9\uC2DC \uB300\uC0C1\uC5D0\uAC8C 10\uC758 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4"
+  - "\uD53C\uD574\uB7C9\uC774 50%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  - "\uD53C\uD574\uB7C9\uC774 50%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  - "\uD53C\uD574\uB7C9\uC774 80%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  - "\uD53C\uD574\uB7C9\uC774 50%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  itemUp_en:
+  - Inflicts 10 damage to the target when hit
+  - Spiky Ball damage is increased by 50%
+  - Spiky Ball damage is increased by 50%
+  - Spiky Ball damage is increased by 80%
+  - Spiky Ball damage is increased by 50%
+  Upgraded_ko: 

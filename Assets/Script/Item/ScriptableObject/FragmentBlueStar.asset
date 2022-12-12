@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f85d27df6458684ab5201570b2a0e3b, type: 3}
+  m_Name: FragmentBlueStar
+  m_EditorClassIdentifier: 
+  id: FragmentBlueStar
+  icon: {fileID: 21300000, guid: b056a82d4dcda2a4b9745c75ab9f24f0, type: 3}
+  title_ko: "\uD478\uB978 \uBCC4 \uC870\uAC01"
+  title_en: Fragment of Bluestar
+  val:
+  - 1
+  - 1.2
+  - 1.2
+  - 1.2
+  - 1.2
+  itemUp_ko:
+  - "0.6\uBC94\uC704 \uC774\uB0B4\uC758 \uC544\uC774\uD15C\uC744 \uB04C\uC5B4\uB2F9\uAE41\uB2C8\uB2E4"
+  - "\uC790\uB825\uC758 \uBC94\uC704\uAC00 20%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  - "\uC790\uB825\uC758 \uBC94\uC704\uAC00 20%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  - "\uC790\uB825\uC758 \uBC94\uC704\uAC00 20%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  - "\uC790\uB825\uC758 \uBC94\uC704\uAC00 20%\uC99D\uAC00\uD569\uB2C8\uB2E4"
+  itemUp_en:
+  - Attracts items within 1.2 range
+  - Increases magnetic range by 20%
+  - Increases magnetic range by 20%
+  - Increases magnetic range by 20%
+  - Increases magnetic range by 20%
+  Upgraded_ko: 

@@ -1,0 +1,47 @@
+*대소문자 띄어쓰기 무시
+
+[아이템 관련]
+increase 아이템이름
+decrease 아이템이름
+enable 아이템이름
+disable 아이템이름
+setitemlv 아이템이름 1~5
+evolution 아이템이름
+devolution 아이템이름
+
+[몹 관련]
+spawn 몹이름
+remove 몹이름
+
+[몬스터 관련]
+spawn 몬스터이름
+kill 몬스터이름
+remove 몬스터이름
+
+[충돌관련]
+collisionoff
+collisionon
+setknockback n
+resetknockback 넉백초기화
+
+[캐릭터 스탯 관련]
+addexp n
+subexp n
+resetlv
+addlv n
+sublv n
+setbulletspeed n
+setbulletdmg n
+setdelay n
+sethp n
+setmaxhp n
+setrecover n
+setspikedmg n
+setmagnet n
+resetmagnet
+
+[기타]
+clearall
+clearbullet
+createbutton 콘솔키
+removebuttons
