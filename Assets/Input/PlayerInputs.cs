@@ -28,79 +28,68 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
             ""id"": ""e72a2608-27ff-4fb6-9609-3387bebfbf7d"",
             ""actions"": [
                 {
-                    ""name"": ""Drag"",
+                    ""name"": ""WASD"",
                     ""type"": ""Value"",
-                    ""id"": ""6081c7ae-b0e3-433e-a947-3410758ec460"",
+                    ""id"": ""30e9f5c4-20ff-49f9-a3f0-26247ba24304"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Mouse"",
-                    ""id"": ""212e2b29-bd44-451f-844b-816f913b7935"",
-                    ""path"": ""OneModifier"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""c5273f12-ea73-48da-b2cb-8913c3d600f0"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Drag"",
+                    ""action"": ""WASD"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Modifier"",
-                    ""id"": ""550df50e-cc9e-41bf-baf6-65ecbb421b1e"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""name"": ""up"",
+                    ""id"": ""b8680de0-e24f-40b2-a646-49de65843380"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Drag"",
+                    ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Binding"",
-                    ""id"": ""1325d6b6-1b01-41af-86db-6aa493d4797c"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""name"": ""down"",
+                    ""id"": ""8cc6938d-618b-4a19-8785-6ad9068a0389"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Drag"",
+                    ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""bcca8627-f651-4ef5-80f7-63e1767de010"",
-                    ""path"": ""OneModifier"",
+                    ""name"": ""left"",
+                    ""id"": ""4a54b0c1-45f4-4faf-9866-48cd9ecf5261"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Drag"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Modifier"",
-                    ""id"": ""b21cbfac-54dd-4e56-90bf-65b4e543ac12"",
-                    ""path"": ""<Touchscreen>/Press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Drag"",
+                    ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Binding"",
-                    ""id"": ""995d62d2-f21b-4a45-ab74-541c1c229d9f"",
-                    ""path"": ""<Touchscreen>/delta"",
+                    ""name"": ""right"",
+                    ""id"": ""422075b6-adc1-4f2f-b4cc-bc1d214c0191"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Drag"",
+                    ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -111,7 +100,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Drag = m_Player.FindAction("Drag", throwIfNotFound: true);
+        m_Player_WASD = m_Player.FindAction("WASD", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -171,12 +160,12 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Drag;
+    private readonly InputAction m_Player_WASD;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
         public PlayerActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Drag => m_Wrapper.m_Player_Drag;
+        public InputAction @WASD => m_Wrapper.m_Player_WASD;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -186,22 +175,22 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Drag.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrag;
-                @Drag.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrag;
-                @Drag.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrag;
+                @WASD.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWASD;
+                @WASD.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWASD;
+                @WASD.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWASD;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Drag.started += instance.OnDrag;
-                @Drag.performed += instance.OnDrag;
-                @Drag.canceled += instance.OnDrag;
+                @WASD.started += instance.OnWASD;
+                @WASD.performed += instance.OnWASD;
+                @WASD.canceled += instance.OnWASD;
             }
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
     public interface IPlayerActions
     {
-        void OnDrag(InputAction.CallbackContext context);
+        void OnWASD(InputAction.CallbackContext context);
     }
 }

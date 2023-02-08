@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BottleCap : MonoBehaviour
+public class BottleCap : EnemyProjectile
 {
+    public Enemy parent;
     private float speed = 7;
     private void Update()
     {
@@ -13,7 +14,7 @@ public class BottleCap : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !GameManager.Inst.player.Invincible)
         {
-            GameManager.Inst.player.HP -= 4;
+            GameManager.Inst.player.Hit(parent, 4);
             Destroy(gameObject);
         }
         if(collision.CompareTag("Remove"))

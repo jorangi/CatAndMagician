@@ -7,21 +7,10 @@ public class Rosruc : Bullet
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        if (collision.CompareTag("Remove"))
+        if (collision.CompareTag("Enemy"))
         {
-            ReturnObject();
-        }
-        else if (collision.CompareTag("Enemy"))
-        {
-            if (collision.GetComponent<Enemy>() != null)
-            {
-                collision.transform.Translate(Vector2.up * knockback);
-                collision.GetComponent<Enemy>().HP -= dmg;
-            }
-            else if (collision.GetComponent<Boss>() != null)
-            {
-                collision.GetComponent<Boss>().HP -= dmg;
-            }
+            (entity as RosrucSpawner).HitCount++;
+            (entity as RosrucSpawner).HittedEnemy = collision.transform;
         }
     }
 }

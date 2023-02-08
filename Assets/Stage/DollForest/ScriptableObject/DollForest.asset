@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgm: {fileID: 8300000, guid: dce933168d91bd94fac6bb96f64d381e, type: 3}
   bossBgm: {fileID: 8300000, guid: 9eff36feaae98ca49b7bffcb9f543cdd, type: 3}
-  stageTime: 180
+  stageTime: 300
   NonWaveMulitply: 1
   NonWaveDelayMin: 0
   NonWaveDelayMax: 6
@@ -26,14 +26,18 @@ MonoBehaviour:
   - teddycat
   - teddyrabbit
   namedEnemies:
-    m_keys: 4e0000006c000000
+    m_keys: 2d0000005a00000078000000d2000000
     m_values:
     - {fileID: 11400000, guid: 8bd31f8e2c185134bacd4d984a9d311f, type: 2}
     - {fileID: 11400000, guid: cbef32968ea3b394a991f3a3ce67e9bc, type: 2}
+    - {fileID: 11400000, guid: d0afb640c65bb2c49a5ed20a83f2dc75, type: 2}
+    - {fileID: 11400000, guid: cee44021bdbc8b04bbe7b45f6ea08844, type: 2}
   wave:
-    m_keys: 120000003a00000096000000
+    m_keys: 120000003a00000096000000be0000000b010000
     m_values:
     - {fileID: 11400000, guid: ab32b4e2393296e4c9eb1bf7823da450, type: 2}
     - {fileID: 11400000, guid: 1ce57bd6432e87c42b40dd824b78cb68, type: 2}
     - {fileID: 11400000, guid: 5c70e90c4b262114c8cec4b6447abdb9, type: 2}
+    - {fileID: 11400000, guid: 60420e989723dad4c8de5984abb502a9, type: 2}
+    - {fileID: 11400000, guid: a5dce3f0659f49947ad6e4348c332cdf, type: 2}
   bossEnemy: teddywhale

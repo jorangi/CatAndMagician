@@ -4,29 +4,13 @@ using UnityEngine;
 
 public class MagicHat : Item
 {
-    private int lv;
-    public int Lv
+    protected override void LevelChanged()
     {
-        get => lv;
-        set
-        {
-            enabled = true;
-            value = Mathf.Clamp(value, 1, data.val.Length);
-            GameManager.Inst.player.BulletDmg *= data.val[value-1];
-            lv = value;
-            GameManager.Inst.player.itemLevels["MagicHat"] = value;
-        }
+        base.LevelChanged();
+        GameManager.Inst.player.BulletDmgRatio *= 1 + ItemManager.ConvertJToken<float>(data.value["val0"])[Mathf.Min(ItemManager.ConvertJToken<float>(data.value["val0"]).Length - 1, Lv - 1)] * 0.01f;
     }
-    public override void SetLv(int lv)
+    protected override void Evolved()
     {
-        Lv = lv;
-    }
-    public override void AddLv()
-    {
-        Lv++;
-    }
-    public override void SubLv()
-    {
-        Lv--;
+        GameManager.Inst.player.BulletDmgRatio *= 1 + ItemManager.ConvertJToken<float>(data.value["val1"])[0] * 0.01f;
     }
 }

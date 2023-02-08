@@ -7,41 +7,24 @@ public class MagicArrowSpawner : BulletSpawner
     public int prong;
     protected override void ShootBullet()
     {
-        switch(Lv)
+        prong = ItemManager.ConvertJToken<int>(data.value["val0"])[Mathf.Min(ItemManager.ConvertJToken<int>(data.value["val0"]).Length - 1, Lv - 1)];
+
+        if (Evo) 
+            prong = ItemManager.ConvertJToken<int>(data.value["val1"])[0];
+
+        for (int i = 0; i < prong; i++)
         {
-            case 1:
-                prong = 1;
-                break;
-            case 2:
-                prong = 1;
-                break;
-            case 3:
-                prong = 3;
-                break;
-            case 4:
-                prong = 3;
-                break;
-            case 5:
-                prong = 5;
-                break;
+            ShootBullet(Bullets.transform.Find(data.value["id"].ToString()).GetChild(0).GetComponent<Bullet>(), Bullets.transform.Find(data.value["id"].ToString()).GetChild(0), data.value["id"].ToString(), i);
         }
-        for(int i = 0; i < prong; i++)
+    }
+    private void ShootBullet(Bullet bullet, Transform parent, string name, int i)
+    {
+        base.ShootBullet(bullet, parent, name);
+        GameObject obj = bullet.gameObject;
+        obj.transform.rotation = Quaternion.Euler(0, 0, -30 + i * 60 / Mathf.Max(prong - 1, 1));
+        if (prong == 1)
         {
-            GameObject obj = Bullets.transform.Find(bulletData.name).GetChild(0).gameObject;
-            obj.transform.SetParent(null);
-            Bullet bullet = obj.GetComponent<Bullet>();
-            bullet.dmg = dmg * GameManager.Inst.player.BulletDmg;
-            bullet.speed = speed * GameManager.Inst.player.BulletSpeed;
-            bullet.knockback = bulletData.knockback * GameManager.Inst.player.Knockback;
-            obj.transform.localScale = new(GameManager.Inst.player.BulletSize, GameManager.Inst.player.BulletSize);
-            obj.transform.rotation = Quaternion.Euler(0, 0, -30 + i * 60 / Mathf.Max(prong - 1, 1));
-            if (prong == 1)
-            {
-                obj.transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            obj.name = bulletData.name;
-            obj.transform.position = transform.position;
-            obj.SetActive(true);
+            obj.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 }

@@ -4,29 +4,32 @@ using UnityEngine;
 
 public class MagicStone : Item
 {
-    private int lv;
-    public int Lv
+    public Sprite subSpawner;
+    protected override void Evolved()
     {
-        get => lv;
-        set
+        StartCoroutine(SubSpawner());
+    }
+    protected override void LevelChanged()
+    {
+        base.LevelChanged();
+        float[] val = ItemManager.ConvertJToken<float>(data.value["val0"]);
+        GameManager.Inst.player.DelayRatio *= 1 + val[Mathf.Min(val.Length - 1, Lv - 1)] * 0.01f;
+    }
+    private IEnumerator SubSpawner()
+    {
+        while(true)
         {
-            enabled = true;
-            value = Mathf.Clamp(value, 1, data.val.Length);
-            GameManager.Inst.player.Delay *= data.val[value-1];
-            lv = value;
-            GameManager.Inst.player.itemLevels["MagicStone"] = value;
+            yield return new WaitForSeconds(ItemManager.ConvertJToken<float>(data.value["val1"])[0]);
+            GameObject obj = Instantiate(GameManager.Inst.player.transform.Find("BulletSpawner").gameObject, GameManager.Inst.player.transform);
+            obj.AddComponent<SpriteRenderer>().sprite = subSpawner;
+            float d = ItemManager.ConvertJToken<float>(data.value["val1"])[1];
+            while(d > 0)
+            {
+                d -= Time.deltaTime;
+                obj.transform.RotateAround(transform.parent.position, Vector3.back, Mathf.CeilToInt(Time.deltaTime) * 5f * GameManager.Inst.player.BulletSpeedRatio);
+                yield return null;
+            }
+            Destroy(obj);
         }
-    }
-    public override void SetLv(int lv)
-    {
-        Lv = lv;
-    }
-    public override void AddLv()
-    {
-        Lv++;
-    }
-    public override void SubLv()
-    {
-        Lv--;
     }
 }

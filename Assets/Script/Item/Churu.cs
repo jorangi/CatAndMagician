@@ -4,36 +4,15 @@ using UnityEngine;
 
 public class Churu : Item
 {
-    private int lv;
-    public int Lv
+    public bool ChuruEvo = false;
+    protected override void LevelChanged()
     {
-        get => lv;
-        set
-        {
-            enabled = true;
-            value = Mathf.Clamp(value, 1, data.val.Length);
-            if (GameManager.Inst.player.recover == 0)
-            {
-                GameManager.Inst.player.recover = 1;
-            }
-            else
-            {
-                GameManager.Inst.player.recover *= data.val[value - 1];
-            }
-            lv = value;
-            GameManager.Inst.player.itemLevels["Churu"] = value;
-        }
+        base.LevelChanged();
+        GameManager.Inst.player.Recover *= 1 + ItemManager.ConvertJToken<float>(data.value["val0"])[Mathf.Min(ItemManager.ConvertJToken<float>(data.value["val0"]).Length - 1, Lv - 1)] * 0.01f;
     }
-    public override void SetLv(int lv)
+    protected override void Evolved()
     {
-        Lv = lv;
-    }
-    public override void AddLv()
-    {
-        Lv++;
-    }
-    public override void SubLv()
-    {
-        Lv--;
+        base.Evolved();
+        ChuruEvo = true;
     }
 }

@@ -4,29 +4,19 @@ using UnityEngine;
 
 public class MagnifyingGlass : Item
 {
-    private int lv;
-    public int Lv
+    protected override void LevelChanged()
     {
-        get => lv;
-        set
+        base.LevelChanged();
+        GameManager.Inst.player.BulletSize *= 1 + ItemManager.ConvertJToken<float>(data.value["val0"])[Mathf.Min(ItemManager.ConvertJToken<float>(data.value["val0"]).Length - 1, Lv - 1)] * 0.01f;
+    }
+    protected override void Evolved()
+    {
+        base.Evolved();
+        float s = ItemManager.ConvertJToken<float>(data.value["val1"])[0];
+        GameManager.Inst.player.transform.localScale = new(s, s);
+        foreach(Transform tr in GameManager.Inst.player.transform)
         {
-            enabled = true;
-            value = Mathf.Clamp(value, 1, data.val.Length);
-            GameManager.Inst.player.BulletSize *= data.val[value-1];
-            lv = value;
-            GameManager.Inst.player.itemLevels["MagnifyingGlass"] = value;
+            tr.localScale = new(1 / s, 1 / s);
         }
-    }
-    public override void SetLv(int lv)
-    {
-        Lv = lv;
-    }
-    public override void AddLv()
-    {
-        Lv++;
-    }
-    public override void SubLv()
-    {
-        Lv--;
     }
 }

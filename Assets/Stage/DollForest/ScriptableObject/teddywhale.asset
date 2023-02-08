@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70cecee1fdf05c34f839e0c9d7b9ad40, type: 3}
   m_Name: teddywhale
   m_EditorClassIdentifier: 
+  expLv: 5
   dmg: 20
-  spd: 0
+  spd: 5
+  knockbackResist: 1
+  ccResist: 0
   hp: 800
+  shield: 0

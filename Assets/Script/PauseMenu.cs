@@ -7,14 +7,8 @@ public class PauseMenu : MonoBehaviour
     float timer = 0;
     private void OnEnable()
     {
-        Time.timeScale = 0;
-        GameManager.Inst.player.input.Disable();
+        GameManager.Inst.isStopped[0] = true;
         GameManager.Inst.consoleManager.ConsoleUI.SetActive(false);
-    }
-    private void OnDisable()
-    {
-        Time.timeScale = 1;
-        GameManager.Inst.player.input.Enable();
     }
     private void Update()
     {
@@ -29,6 +23,7 @@ public class PauseMenu : MonoBehaviour
         if(timer > 1)
         {
             gameObject.SetActive(false);
+            GameManager.Inst.isStopped[0] = false;
             timer = 0;
         }
     }

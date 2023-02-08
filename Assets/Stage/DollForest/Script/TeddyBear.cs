@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeddyBear : Enemy
+public class TeddyBear : NormalEnemy
 {
     public GameObject bottleCap;
     private WaitForSeconds wait = new(3.0f);
@@ -15,17 +15,30 @@ public class TeddyBear : Enemy
     }
     private IEnumerator Shoot()
     {
-        GameObject obj =Instantiate(bottleCap);
+        while(stopped)
+        {
+            yield return null;
+        }
+        GameObject obj = Instantiate(bottleCap);
+        obj.GetComponent<BottleCap>().parent = this;
         obj.transform.position = transform.position;
         yield return delay;
         StartCoroutine(Shoot());
     }
     private IEnumerator Sway()
     {
+        while (stopped)
+        {
+            yield return null;
+        }
         yield return wait;
         float x = Random.Range(-2.55f, 2.55f);
         while(Mathf.Abs(transform.position.x - x) > 0.01f)
         {
+            while (stopped)
+            {
+                yield return null;
+            }
             transform.position = new(Mathf.Lerp(transform.position.x, x, Time.deltaTime * 5), transform.position.y);
             yield return null;
         }

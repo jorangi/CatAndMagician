@@ -2,41 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Airstrike : Bullet
+public class Airstrike : WideBullet
 {
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         StartCoroutine(Hide());
     }
     private IEnumerator Hide()
     {
         yield return new WaitForSeconds(0.05f);
-        GetComponent<BoxCollider2D>().enabled = false;
+        col.enabled = false;
         float t = 0;
-        var r = GetComponent<SpriteRenderer>();
         while (t < 0.95f)
         {
             t += Time.deltaTime;
-            r.color = new(1, 1, 1, 1-t);
+            sprite.color = new(1, 1, 1, 1-t);
             yield return null;
         }
         ReturnObject();
-        r.color = new(1, 1, 1, 1);
-        GetComponent<BoxCollider2D>().enabled = true;
+        sprite.color = new(1, 1, 1, 1);
     }
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    protected override void FixedUpdate()
     {
-        if (collision.CompareTag("Enemy"))
-        {
-            if (collision.GetComponent<Enemy>() != null)
-            {
-                collision.transform.Translate(Vector2.up * knockback);
-                collision.GetComponent<Enemy>().HP -= dmg;
-            }
-            else if (collision.GetComponent<Boss>() != null)
-            {
-                collision.GetComponent<Boss>().HP -= dmg;
-            }
-        }
     }
 }

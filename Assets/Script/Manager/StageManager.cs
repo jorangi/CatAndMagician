@@ -6,6 +6,7 @@ using GoogleMobileAds.Api;
 
 public class StageManager : MonoBehaviour
 {
+    public EvoMenu evoMenu;
     private bool AppearedBoss = false;
     public AudioSource bgm;
     public Image backGround;
@@ -29,6 +30,8 @@ public class StageManager : MonoBehaviour
     }
     private void StageInit()
     {
+        if(FindObjectOfType<Churu>().Evo)
+            FindObjectOfType<Churu>().ChuruEvo = true;
         bgm = GetComponent<AudioSource>();
         backGround.sprite = stage.backGround;
         bgm.clip = stage.bgm;
@@ -153,7 +156,7 @@ public class StageManager : MonoBehaviour
     public void SpawnBoss()
     {
         StartCoroutine(bgmChange());
-        GameManager.Inst.enemyManager.EnemySpawn("teddywhale");
+        GameManager.Inst.enemyManager.EnemySpawn(stage.bossEnemy);
         //StageClear();
     }
     public IEnumerator bgmChange()
@@ -174,7 +177,7 @@ public class StageManager : MonoBehaviour
     public void StageClear()
     {
         gamePlaying = false;
-
+        evoMenu.gameObject.SetActive(true);
         AdStart();
     }
     public void dead()

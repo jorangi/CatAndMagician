@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e6c58806c0f8747aba441d74494ce0, type: 3}
+  m_Name: MeasureDmg
+  m_EditorClassIdentifier: 
+  bgm: {fileID: 8300000, guid: dce933168d91bd94fac6bb96f64d381e, type: 3}
+  bossBgm: {fileID: 8300000, guid: 9eff36feaae98ca49b7bffcb9f543cdd, type: 3}
+  stageTime: 0
+  NonWaveMulitply: 0
+  NonWaveDelayMin: 0
+  NonWaveDelayMax: 0
+  stageId: measuredmg
+  stageName: "\uB370\uBBF8\uC9C0 \uCE21\uC815"
+  backGround: {fileID: 21300000, guid: 23e22c30b56209841a7491866b2c46fd, type: 3}
+  appearEnemies: []
+  namedEnemies:
+    m_keys: 
+    m_values: []
+  wave:
+    m_keys: 
+    m_values: []
+  bossEnemy: tarcat

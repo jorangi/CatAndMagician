@@ -7,6 +7,8 @@ public class IntWaveDictionary : SerializableDictionary <int, Wave>{ }
 [System.Serializable]
 public class StrIntDictionary : SerializableDictionary <string, int>{ }
 [System.Serializable]
+public class StrBoolDictionary : SerializableDictionary <string, bool>{ }
+[System.Serializable]
 public class StrStrDictionary : SerializableDictionary <string, string>{ }
 
 [System.Serializable]

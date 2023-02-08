@@ -3,29 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 public class CatsEye : Bullet
 {
-    protected override void Awake()
-    {
-        base.Awake();
-    }
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        if (collision.CompareTag("Remove"))
+        if (collision.CompareTag("Enemy"))
         {
-            ReturnObject();
-        }
-        else if (collision.CompareTag("Enemy"))
-        {
-            if(collision.GetComponent<Enemy>() != null)
+            if(entity.Evo)
             {
-                collision.transform.Translate(Vector2.up * knockback);
-                collision.GetComponent<Enemy>().HP -= dmg;
+                Transform obj = GameObject.FindGameObjectWithTag("Bullets").transform.Find("CatsEyeExplosion").GetChild(0);
+                obj.gameObject.SetActive(true);
+                obj.SetParent(null);
+                obj.transform.position = transform.position;
+                CatsEyeExplosion ex = obj.GetComponent<CatsEyeExplosion>();
+                ex.dmg = dmg;
             }
-            else if(collision.GetComponent<Boss>() != null)
-            {
-                collision.GetComponent<Boss>().HP -= dmg;
-            }
-            ReturnObject();
         }
     }
 }

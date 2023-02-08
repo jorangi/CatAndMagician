@@ -4,30 +4,26 @@ using UnityEngine;
 
 public class Ribbon : Item
 {
-    private int lv;
-    public int Lv
+    private float timer = 0f;
+    private float shieldValue = 0f;
+    private void Update()
     {
-        get => lv;
-        set
+        if (GameManager.Inst.player.RibbonShield > shieldValue || !Evo)
         {
-            enabled = true;
-            value = Mathf.Clamp(value, 1, data.val.Length);
-            GameManager.Inst.player.maxhp *= data.val[value-1];
-            GameManager.Inst.player.HP *= data.val[value-1];
-            lv = value;
-            GameManager.Inst.player.itemLevels["Ribbon"] = value;
+            return;
+        }
+        timer += Time.deltaTime;
+        if(timer > 10f)
+        {
+            timer = 0f;
+            shieldValue = GameManager.Inst.player.maxhp * 0.1f;
+            GameManager.Inst.player.RibbonShield += GameManager.Inst.player.ChangeHS(false, shieldValue);
+            GameManager.Inst.player.Shield += GameManager.Inst.player.ChangeHS(false, shieldValue);
         }
     }
-    public override void SetLv(int lv)
+    protected override void LevelChanged()
     {
-        Lv = lv;
-    }
-    public override void AddLv()
-    {
-        Lv++;
-    }
-    public override void SubLv()
-    {
-        Lv--;
+        base.LevelChanged();
+        GameManager.Inst.player.MaxHPRatio *= 1 + ItemManager.ConvertJToken<float>(data.value["val0"])[Mathf.Min(ItemManager.ConvertJToken<float>(data.value["val0"]).Length - 1, Lv - 1)] * 0.01f;
     }
 }

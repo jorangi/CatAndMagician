@@ -2,30 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrozenNameTag : Item
+public class FrozenNametag : Item
 {
-    private int lv;
-    public int Lv
+    protected override void LevelChanged()
     {
-        get => lv;
-        set
-        {
-            enabled = true;
-            value = Mathf.Clamp(value, 1, data.val.Length);
-            GameManager.Inst.player.BulletSpeed /= data.val[value-1];
-            GameManager.Inst.player.itemLevels["FrozenNameTag"] = value;
-        }
-    }
-    public override void SetLv(int lv)
-    {
-        Lv = lv;
-    }
-    public override void AddLv()
-    {
-        Lv++;
-    }
-    public override void SubLv()
-    {
-        Lv--;
+        base.LevelChanged();
+        GameManager.Inst.player.BulletSpeedRatio /= 1 + ItemManager.ConvertJToken<float>(data.value["val0"])[Mathf.Min(ItemManager.ConvertJToken<float>(data.value["val0"]).Length - 1, Lv - 1)] * 0.01f;
     }
 }

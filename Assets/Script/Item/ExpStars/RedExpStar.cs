@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedExpStar : Item
+public class RedExpStar : ExpStar
 {
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    private void Awake()
     {
-        if (collision.CompareTag("Player"))
-        {
-            GameManager.Inst.player.Exp += 10;
-        }
-        base.OnTriggerEnter2D(collision);
+        ExpValue = 15;
     }
 }

@@ -46,18 +46,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemies:
     m_keys:
-    - testenemy
     - teddybear
     - teddyrabbit
     - teddycat
     - teddylion
     - teddydog
     - teddywhale
+    - tarcat
     m_values:
-    - {fileID: 2476264237971282745, guid: d26d2ce589d214b48957a256905de34a, type: 3}
     - {fileID: 2476264237971282745, guid: 1092e8af34187f74ca235708ef69224e, type: 3}
     - {fileID: 2476264237971282745, guid: 142333cb0dda0f042a73156695fd0f91, type: 3}
     - {fileID: 2476264237971282745, guid: 80f72dc02b0237c46b506ea5cfb81656, type: 3}
     - {fileID: 2476264237971282745, guid: 20612df641dd08645b39c3f0a8e6d5d6, type: 3}
     - {fileID: 2476264237971282745, guid: a49cef4bfe6f7ae42aa5ce6a5333e8e8, type: 3}
     - {fileID: 2476264237971282745, guid: b7aa584f325d9c140bc513f7b8c5c420, type: 3}
+    - {fileID: 2476264237971282745, guid: 30762160315703c439308d4184f47105, type: 3}

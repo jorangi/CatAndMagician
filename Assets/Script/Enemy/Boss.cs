@@ -2,77 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Boss : Enemy
 {
-    [SerializeField]
-    protected Sprite CautionBox;
-
     protected Coroutine idle;
-    private bool spikeTimer;
-    private bool SpikeTimer
+    protected override void Awake()
     {
-        get => spikeTimer;
-        set
-        {
-            if (value)
-            {
-                StartCoroutine(SpikeTimerOn());
-            }
-            spikeTimer = value;
-        }
-    }
-    public string Drops;
-    public EnemyData data;
-    public float dmg;
-    private Transform healthBar;
-    public float maxhp;
-    protected float hp;
-    public float spd;
-    public float HP
-    {
-        get => hp;
-        set
-        {
-            if (hp == 0)
-            {
-                return;
-            }
-            value = Mathf.Clamp(value, 0, maxhp);
-            hp = value;
-            healthBar.localScale = new(50 * (hp / maxhp), 1);
-            if (hp == 0)
-            {
-                GetComponent<BoxCollider2D>().enabled = false;
-                GameObject item = Instantiate(GameManager.Inst.Drops[Drops]);
-                item.name = Drops;
-                item.transform.position = transform.position;
-                Destroy(gameObject);
-                GameManager.Inst.stageManager.StageClear();
-            }
-        }
-    }
-
-    protected virtual void Awake()
-    {
-        healthBar = transform.Find("HealthBar");
+        base.Awake();
         healthBar.SetParent(null);
         healthBar.position = new(-2.5f, 4.5f);
+        shieldBar.SetParent(null);
+        shieldBar.position = new(-2.5f, 4.5f);
 
-        maxhp = data.hp;
-        hp = data.hp;
-        HP = data.hp;
-        dmg = data.dmg;
-        spd = data.spd;
         StartCoroutine(Spawned());
-    }
-    private IEnumerator SpikeTimerOn()
-    {
-        yield return new WaitForSeconds(GameManager.Inst.player.invincibleTime);
-        SpikeTimer = false;
     }
     protected virtual IEnumerator Spawned()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
+        triggerCol.enabled = false;
         transform.position = new(0, 5.5f);
         healthBar.localScale = new(0, 1);
 
@@ -89,7 +34,7 @@ public class Boss : MonoBehaviour
             yield return null;
         }
         healthBar.localScale = new(50, 1);
-        GetComponent<BoxCollider2D>().enabled = true;
+        triggerCol.enabled = true;
     }
     protected IEnumerator Idle()
     {
@@ -111,16 +56,19 @@ public class Boss : MonoBehaviour
             y = transform.position.y + 0.1f;
         }
     }
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected override void RefreshHPBar()
     {
-        if (collision.CompareTag("Player") && !GameManager.Inst.player.Invincible)
+        base.RefreshHPBar();
+        if (Shield == 0)
         {
-            if (!SpikeTimer)
-            {
-                SpikeTimer = true;
-                HP -= GameManager.Inst.player.SpikeDmg;
-            }
-            GameManager.Inst.player.HP -= dmg;
+            healthBar.localScale = new(50 * (HP / maxhp), 1);
+            shieldBar.localScale = new(0, 1);
+        }
+        else
+        {
+            healthBar.localScale = new(HP * 50 / Mathf.Max(HP + Shield, maxhp), 1);
+            shieldBar.localScale = new(Shield * 50 / Mathf.Max(HP + Shield, maxhp), 1);
+            shieldBar.localPosition = new(-0.5f + (healthBar.localScale.x / 10f), -0.65f);
         }
     }
 }

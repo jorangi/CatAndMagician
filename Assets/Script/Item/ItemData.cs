@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ItemData", menuName ="Scriptable Object/ItemData", order = int.MaxValue)]
-public class ItemData:ScriptableObject
+[System.Serializable]
+public class ItemData
 {
-    public string id;
     public Sprite icon;
-    public string title_ko;
-    public string title_en;
-    public float[] val;
-    public string[] itemUp_ko = { };
-    public string[] itemUp_en = { };
-    public string Upgraded_ko;
+    public Dictionary<string, Newtonsoft.Json.Linq.JToken> value = new();
+    public bool isBulletSpawner = false;
+    public bool inlaidAble = false;
+    //public Dictionary<string, object> value = new();
 }

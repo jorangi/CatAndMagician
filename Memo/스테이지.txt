@@ -2,14 +2,41 @@
 *네임드 몬스터 및 보스 몬스터는 탄막패턴을 보유함
 *보스 몬스터는 스테이지 시간 달성시 등장하며 처치를 제외하고 넘길 수 없음
 
-[인형의 숲(DollForest)]
+[1스테이지 : 인형의 숲(DollForest)]
+-밝고 아름다운 숲과 그곳을 지키는 인형들
 일반 몬스터 : 토끼인형(Teddy Rabbit), 고양이 인형(Teddy Cat), 강아지 인형(Teddy Dog)
-
-네임드 몬스터
--곰인형(Teddy Bear) : 좌우로 무작위 이동 후 3초 대기, 2초에 한 번씩 직선으로 단추 투사체 발사
--사자인형(Teddy Lion) : 가운데에서 생성, 3초에 한 번씩 0.5초간 유지되는 X와 + 레이저를 교차해서 발사
-
+네임드 몬스터 : 곰인형(Teddy Bear), 사자인형(Teddy Lion)
 보스 몬스터 : 고래인형(Teddy Whale)
--패턴 1 : 직선 돌진
--패턴 2 : 낙하 패턴 - 난방향으로 물방울 탄환이 20개 발사됨(중력 적용됨)
--패턴 3 : 물기둥 패턴
+
+[2스테이지 : 슈가랜드(SugarLand)]
+-눈과 코를 자극하는 달콤한 간식들과 여유를 즐기는 마녀들
+일반 몬스터 : 마카롱 괴물(Macaron Monster), 사탕 괴물(Candy Monster), 초콜릿 괴물(Chocolate Monster)
+네임드 몬스터 : 마카롱 의상을 입은 아이(Macaron Costume Girl), 사탕 의상을 입은 아이(Candy Costume Girl), 초콜릿 의상을 입은 아이 (Chocolate Costume Boy)
+보스 몬스터 : 달콤한 마녀(Sweet Witch)
+
+[3스테이지 : 설원(SnowField)]
+-뼛속까지 얼어붙을 듯한 눈의 땅
+일반 몬스터 : 눈사람(Snowman), 늑대(Wolf), 고드름 괴물(Icicle Monster)
+네임드 몬스터 : 눈꽃의지(Snowflake Will), 서리늑대(Frost Wolf)
+보스 몬스터 : 눈의 정령(Snow Spirit)
+
+[3스테이지 : 황금해변(Gold beach)]
+-금으로 이루어진 해변의 모래와 눈부신 바다
+
+[4스테이지 : 오래된 성(Old Castle)]
+-잊혀진 옛 성
+일반 몬스터 : 투구령(Helmet Ghost), 장미검(Rose Sword), 불의 방패(Fire Shield)
+네임드 몬스터 : 광휘의 휘장(Insignia of Brilliance), 푸른 기사(Blue Knight), 붉은 기사(Red Knight)
+보스 몬스터 : 잊혀진 기사(Forgotten Knight)
+
+[5스테이지 : 어두운 늪(Dark Swamp)]
+-눈 앞을 가리는 자욱한 안개와 어두운 늪
+일반 몬스터 : 분홍 악어(Pink Crocodile), 꼬마 뱀(Little Snake), 사나운 거북(Ferocious Turtle)
+네임드 몬스터 : 독충(Poison Bug), 진흙 정령(Mud Spirit)
+보스 몬스터 : 늪 괴물(Swamp Monster)
+
+[6스테이지 : 마녀의 정원(Witch Garden)]
+-칠흑같은 모습의 마녀가 사는 곳
+일반 몬스터 : 플라스크 괴물(Flask Monster), 의지를 가진 모자(Willful Hat), 마법 박쥐(Magic Bat)
+네임드 몬스터 : 대장마녀(Chief Witch), 호박귀신(Pumpkin Ghost)
+보스 몬스터 : 고대의 마녀(Ancient Witch)

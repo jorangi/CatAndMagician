@@ -1,47 +1,134 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Item : MonoBehaviour
 {
-    public ItemData data;
+    public ItemData data = new();
+    private bool evo;
+    public bool Evo
+    {
+        get => evo;
+        set
+        {
+            evo = value;
+            itemSlot.GetComponentInChildren<TextMeshProUGUI>().text = "★";
+            Evolved();
+        }
+    }
+    private int lv;
+    public int Lv
+    {
+        get => lv;
+        set
+        {
+            value = Mathf.Clamp(value, 1, 5);
+            lv = value;
+            LevelChanged();
+        }
+    }
     public GameObject itemSlot;
-    private bool Magnet = false;
-    private float spd = 2.0f;
+    protected virtual void Awake()
+    {
+        data = ItemManager.datas[GetType().ToString().Replace("Spawner", "")];
+        if (data.value.ContainsKey("dmg"))
+        {
+            data.isBulletSpawner = true;
+        }
+        if(data.value.ContainsKey("inlaid"))
+        {
+            data.inlaidAble = true;
+        }
+        if(data.isBulletSpawner && name != "BulletSpawner")
+        {
+            return;
+        }
+        GameManager.Inst.player.Items.Add(GetType().ToString().Replace("Spawner", ""), this);
+    }
+    private void Start()
+    {
+    }
+    protected T CovertJToken<T>(Newtonsoft.Json.Linq.JToken value)
+    {
+        List<T> values = new();
+        int i = 0;
+        foreach (Newtonsoft.Json.Linq.JToken val in value)
+        {
+            values.Add((T)System.Convert.ChangeType(val, typeof(T)));
+            i++;
+        }
+        return values[0];
+    }
+    protected T[] ConvertJToken<T>(Newtonsoft.Json.Linq.JToken value)
+    {
+        List<T> values = new();
+        int i = 0;
+        foreach(Newtonsoft.Json.Linq.JToken val in value)
+        {
+            values.Add((T)System.Convert.ChangeType(val, typeof(T)));
+            i++;
+        }
+        return values.ToArray();
+    }
     public virtual void SetLv(int lv)
     {
+        Lv = lv;
     }
     public virtual void AddLv()
     {
+        Lv++;
     }
     public virtual void SubLv()
     {
+        Lv--;
     }
-    private void FixedUpdate()
+    protected virtual void Evolved()
     {
-        if( !Magnet )
+    }
+    protected virtual void LevelChanged()
+    {
+        enabled = true;
+        GameManager.Inst.player.itemLevels[data.value["id"].ToString()] = Lv;
+        TextMeshProUGUI t = itemSlot.GetComponentInChildren<TextMeshProUGUI>();
+        switch (Lv)
         {
-            transform.Translate(spd * Time.fixedDeltaTime * Vector2.down);
-        }
-        else
-        {
-            transform.position = Vector2.Lerp(transform.position, GameManager.Inst.player.transform.position, spd * 5f * Time.fixedDeltaTime);
+            case 1:
+                t.text = "Ⅰ";
+                break;
+            case 2:
+                t.text = "Ⅱ";
+                break;
+            case 3:
+                t.text = "Ⅲ";
+                break;
+            case 4:
+                t.text = "Ⅳ";
+                break;
+            case 5:
+                t.text = "Ⅴ";
+                break;
         }
     }
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    public void InlaidItem()
     {
-        if(collision.CompareTag("Player"))
+        if(data.inlaidAble)
+            Inlaided();
+    }
+    protected virtual void Inlaided()
+    {
+        for(int i = GameManager.Inst.player.getItems.Count - 1; i>=0; i--)
         {
-            GetComponent<BoxCollider2D>().enabled = false;
-            Destroy(gameObject);
+            GameManager.Inst.player.getItems.Remove(data);
         }
-        if(collision.CompareTag("Magnet"))
+        itemSlot.SetActive(false);
+        for(int i = 0; i < Lv; i++)
         {
-            Magnet = true;
+            GameManager.Inst.player.AddItem(data.value["inlaid"].ToString());
         }
-        if (collision.CompareTag("Remove"))
+        if(Evo)
         {
-            Destroy(gameObject);
+            GameManager.Inst.player.EvoItem(data.value["inlaid"].ToString());
         }
     }
 }

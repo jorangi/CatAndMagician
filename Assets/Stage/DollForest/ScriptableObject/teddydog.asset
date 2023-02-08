@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70cecee1fdf05c34f839e0c9d7b9ad40, type: 3}
   m_Name: teddydog
   m_EditorClassIdentifier: 
+  expLv: 1
   dmg: 3
   spd: 1
+  knockbackResist: 0
+  ccResist: 0
   hp: 20
+  shield: 0

@@ -10,11 +10,14 @@ TagManager:
   - Enemy
   - Items
   - Magnet
+  - Screen
+  - EnemyChild
+  - MicsEffect
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - BorderZone
   - Water
   - UI
   - Ignore
@@ -23,9 +26,9 @@ TagManager:
   - Items
   - HittedEnemy
   - Enemy
-  - 
-  - 
-  - 
+  - InvinciblePlayer
+  - EnemyCollider
+  - EnemyTrigger
   - 
   - 
   - 
@@ -46,6 +49,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: CC
+    uniqueID: 1123783349
     locked: 0
   - name: Canvas
     uniqueID: 467070919

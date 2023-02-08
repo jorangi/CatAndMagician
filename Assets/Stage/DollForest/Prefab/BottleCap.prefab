@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2574631753214570849}
   - component: {fileID: 824638694357802705}
   - component: {fileID: -2467396532392868128}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BottleCap
-  m_TagString: Untagged
+  m_TagString: EnemyChild
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5402342191471466016}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -146,3 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727476ec7ec32024bacaa6ea4a55dc11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 0}

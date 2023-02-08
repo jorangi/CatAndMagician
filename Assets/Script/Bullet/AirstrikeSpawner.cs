@@ -6,72 +6,76 @@ public class AirstrikeSpawner : BulletSpawner
 {
     public GameObject AirstrikeRange;
     public Sprite AirstrikeRangeRed;
+    private bool TwiceD;
+    private int FireCount;
+    private float Timer;
 
+    protected override void Update()
+    {
+        base.Update();
+        if(Timer>0)
+        {
+            Timer -= Time.deltaTime;
+        }
+        if(TwiceD && Timer <= 0)
+        {
+            delay /= 2f;
+            TwiceD = false;
+        }
+    }
     protected override void PoolingBullet()
     {
+        base.PoolingBullet();
         GameObject parent = new();
         parent.transform.SetParent(Bullets.transform);
         parent.name = "AirstrikeRange";
 
-        for (int i = 0; i < bulletData.limit; i++)
+        for (int i = 0; i < (int)data.value["limit"]; i++)
         {
             GameObject obj = Instantiate(AirstrikeRange, parent.transform);
+            obj.GetComponent<Bullet>().entity = this;
             obj.name = "AirstrikeRange";
             obj.SetActive(false);
         }
 
-        base.PoolingBullet(); 
     }
     protected override void ShootBullet()
     {
+        FireCount++;
+        if(FireCount%10==0)
+        {
+            delay *= 2;
+            Timer = 2f;
+            TwiceD = true;
+        }
         GameObject obj = Bullets.transform.Find("AirstrikeRange").GetChild(0).gameObject;
         obj.transform.SetParent(null);
-        AirstrikeRange bullet = obj.GetComponent<AirstrikeRange>();
-        bullet.spawner = this;
-        bullet.dmg = dmg * GameManager.Inst.player.BulletDmg;
-        bullet.speed = speed * GameManager.Inst.player.BulletSpeed;
-        bullet.knockback = bulletData.knockback * GameManager.Inst.player.Knockback;
         obj.transform.localScale = new(GameManager.Inst.player.BulletSize, GameManager.Inst.player.BulletSize);
-        obj.name = bulletData.name;
-        if(FindObjectOfType<Enemy>() == null && FindObjectOfType<Boss>() == null)
+        obj.name = "AirstrikeRange";
+        if(!GameObject.FindGameObjectWithTag("Enemy"))
         {
             obj.transform.position = new(transform.position.x, 3);
         }
         else
         {
-            bool chk = false;
+            bool chk = true;
             Enemy[] e = FindObjectsOfType<Enemy>();
-            Boss b = FindObjectOfType<Boss>();
 
             foreach (Enemy enemy in e)
             {
-                if (enemy.transform.position.x >= 5 || enemy.transform.position.x <= -5 || enemy.transform.position.y >= 6.5f || enemy.transform.position.y <= -6.5f)
+                if (enemy.inScreen)
                 {
-                    chk = true;
+                    chk = false;
+                    break;
                 }
             }
-            if(b!=null)
-            {
-                if (b.transform.position.x >= 5 || b.transform.position.x <= -5 || b.transform.position.y >= 6.5f || b.transform.position.y <= -6.5f)
-                {
-                    chk = true;
-                }
-            }
-            
             if(chk)
             {
                 obj.transform.position = new(transform.position.x, 3);
                 obj.SetActive(true);
                 return;
             }
-            if(b != null)
-            {
-                obj.transform.position = b.transform.position;
-            }
-            else
-            {
-                obj.transform.position = e[0].transform.position;
-            }
+            obj.transform.position = e[0].transform.position;
         }
         obj.SetActive(true);
     }
